@@ -1,3 +1,1 @@
-export default function a() {
-
-}
+export function f() {}

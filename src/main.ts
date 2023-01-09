@@ -1,14 +1,26 @@
 import { createApp } from "vue";
 import { createPinia } from "pinia";
-
-import App from "./App.vue";
-import router from "./router";
-
+import "virtual:svg-icons-register";
+// css
 import "./style/index.scss";
+import "vfonts/FiraSans.css";
+// app
+import App from "./App.vue";
+import { setupRouter } from "./router";
+import { isPC } from "@/tauri";
+import setupGlobalComponents from "@/components/global";
 
 const app = createApp(App);
 
-app.use(createPinia());
-app.use(router);
-
-app.mount("#app");
+(async function setupApp() {
+  //判断桌面和网页
+  document.body.classList.add(isPC() ? "pc" : "htm");
+  // 装载全局store/pinia
+  app.use(createPinia());
+  // 装载路由
+  await Promise.all([setupRouter(app)]);
+  // 初始化全局组件
+  setupGlobalComponents(app);
+  // 挂载实列
+  app.mount("#app");
+})();

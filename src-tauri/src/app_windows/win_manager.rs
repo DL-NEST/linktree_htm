@@ -1,4 +1,4 @@
-use tauri::{App, Manager, Wry};
+use tauri::{App, Wry};
 
 
 pub fn win_manager(app : &mut App<Wry>){

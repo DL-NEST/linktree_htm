@@ -1,44 +1,23 @@
 <template>
-  <div class="app-curl" data-tauri-drag-region="">
+  <div class="app-curl" data-tauri-drag-region="" v-if="isPC()">
     <div class="app-title" data-tauri-drag-region="">linktree</div>
     <div class="app-curl-list">
-      <Icon class="minimize" @click="appMinimize">
-        <Subtract12Regular />
-      </Icon>
-      <Icon class="maximize" @click="appMaximize">
-        <CheckboxUnchecked12Regular />
-      </Icon>
-      <Icon class="close" @click="appClose">
-        <Dismiss12Regular />
-      </Icon>
+      <span class="ctrl-minimize" @click="appMinimize">
+        <svg-icon name="ctrl_minimize"></svg-icon>
+      </span>
+      <span class="ctrl-maximize" @click="appMaximize">
+        <svg-icon name="ctrl_maximize"></svg-icon>
+      </span>
+      <span class="ctrl-close" @click="appClose">
+        <svg-icon name="ctrl_close"></svg-icon>
+      </span>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import {
-  CheckboxUnchecked12Regular,
-  Subtract12Regular,
-  Dismiss12Regular,
-} from "@vicons/fluent";
-import { Icon } from "@vicons/utils";
-import { appWindow } from "@tauri-apps/api/window";
-
-function appMinimize() {
-  appWindow.minimize();
-}
-function appMaximize() {
-  appWindow.isMaximized().then((res: boolean) => {
-    if (res) {
-      appWindow.unmaximize();
-    } else {
-      appWindow.maximize();
-    }
-  });
-}
-function appClose() {
-  appWindow.close();
-}
+import SvgIcon from "@/components/global/svgIcon/SvgIcon.vue";
+import { isPC, appMinimize, appMaximize, appClose } from "@/tauri";
 </script>
 
 <style scoped lang="scss">
@@ -71,10 +50,14 @@ function appClose() {
       justify-content: center;
       align-items: center;
       color: rgb(185, 187, 190);
+      svg {
+        width: 14px;
+        height: 14px;
+      }
       &:hover {
         background-color: #33363b;
       }
-      &.close:hover {
+      &.ctrl-close:hover {
         background-color: #ed4245;
         color: white;
       }

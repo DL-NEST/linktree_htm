@@ -11,8 +11,6 @@ use tauri::{App, Manager, Wry};
 use crate::app_options::tray::{new_tray};
 use crate::app_options::global_shortcuts::{register_shortcuts};
 use crate::app_options::events::{register_events};
-use crate::app_windows::win_manager::win_manager;
-
 
 pub fn set_setup() -> fn(&mut App<Wry>) -> Result<(), Box<dyn Error>> {
     |app| {
