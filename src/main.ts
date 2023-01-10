@@ -3,7 +3,6 @@ import { createPinia } from "pinia";
 import "virtual:svg-icons-register";
 // css
 import "./style/index.scss";
-import "vfonts/FiraSans.css";
 // app
 import App from "./App.vue";
 import { setupRouter } from "./router";

@@ -23,10 +23,8 @@ body {
   height: 100vh;
   width: 100vw;
   transition: color 0.5s, background-color 0.5s;
-  line-height: 1.6;
-  font-family: v-sans, v-mono, Inter, -apple-system,
-    BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell,
-    "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  line-height: 1.5;
+  font-family: Avenir, Helvetica, Arial,"Inter","JetBrains Mono",'Poppins', sans-serif;
   font-size: 14px;
   // 字体的渲染
   text-rendering: optimizeLegibility;
@@ -44,17 +42,17 @@ body {
   flex-direction: column;
 }
 
-.pc{
+.pc {
   padding: 0.5px;
   // 装饰器边框阴影
-  #app{
+  #app {
     border-radius: 8px;
     box-shadow: 0 0 1px 1px rgba(255, 255, 255, 0.1);
   }
 }
-.htm{
+.htm {
   padding: 0;
-  #app{
+  #app {
     border-radius: 0;
   }
 }

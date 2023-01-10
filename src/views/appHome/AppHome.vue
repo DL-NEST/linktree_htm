@@ -1,11 +1,20 @@
 <template>
   <div class="app-home">
-    <div class="app-sidebar">
+    <div
+      class="app-sidebar"
+      :class="sidebarState ? 'sidebar-open' : 'sidebar-shrink'"
+    >
       <div class="sidebar-content">
         <div class="sidebar-title user-none">
           <div class="app-logo"></div>
           <p>linktree</p>
-          <svg-icon name="sidebar_list" color="#b9bbbe"></svg-icon>
+          <div class="sidebar-btn">
+            <svg-icon
+              name="sidebar_list"
+              color="#b9bbbe"
+              @click="setState"
+            ></svg-icon>
+          </div>
         </div>
         <div class="sidebar-list">
           <div
@@ -13,47 +22,50 @@
             :key="index"
             class="sidebar-list-item"
             :class="{ 'sidebar-list-activity': item.activity }"
-            @click="item_btn($event, item)"
+            @click="item_btn(item)"
           >
             <div class="sidebar-list-item-span">
               <span></span>
             </div>
-            <div class="sidebar-list-item-content">
+            <div class="sidebar-list-item-content user-none">
               <div class="sidebar-list-item-icon">
                 <svg-icon
                   :name="'sidebar_' + item.icon"
                   :color="item.activity ? '#ffffff' : '#b9bbbe'"
                 ></svg-icon>
               </div>
-              <div class="sidebar-list-item-text">{{ item.name }}</div>
+              <div class="sidebar-list-item-text">
+                {{ item.name }}
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="sidebar-bottom"></div>
+      <div class="sidebar-bottom">
+        <sidebar-user :sidebar-state="sidebarState" />
+        <div class="sidebar-bottom-serialPort"></div>
+      </div>
     </div>
     <div class="app-content">
-      <!--  <router-view />-->
-      <p style="color: white; font-weight: 500; font-size: 22px">link</p>
+      <router-view />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { onMounted, reactive } from "vue";
+import { onMounted, reactive, ref } from "vue";
 import SvgIcon from "@/components/global/svgIcon/SvgIcon.vue";
+import SidebarUser from "@views/appHome/components/SidebarUser.vue";
+import { useRoute, useRouter } from "vue-router";
 
-onMounted(() => {});
-
-// defineProps<{
-//   msg: string;
-// }>();
+const $router = useRouter();
 
 type sidebarType = {
   icon: string;
   name: string;
   activity: boolean;
 };
+let sidebarState = ref<boolean>(true);
 let sidebarList = reactive<sidebarType[]>([
   {
     icon: "device",
@@ -92,14 +104,25 @@ let sidebarList = reactive<sidebarType[]>([
   },
 ]);
 
+function setState() {
+  sidebarState.value = !sidebarState.value;
+}
+
+onMounted(() => {
+  for (let i = 0; i < sidebarList.length; i++) {
+    if (sidebarList[i].icon === useRoute().name) {
+      item_btn(sidebarList[i]);
+    }
+  }
+});
+
 // 控制标签变换路由跳转, path: string
-function item_btn(ever: any, item: sidebarType) {
+function item_btn(item: sidebarType) {
   sidebarList.forEach((i) => {
     i.activity = false;
   });
   item.activity = true;
-  // console.log(`/home/${path}`)
-  // routers.push(`/home/${path}`)
+  $router.push(`/home/${item.icon}`);
 }
 
 onMounted(() => {});
@@ -110,11 +133,30 @@ onMounted(() => {});
   width: 100%;
   display: flex;
   flex-direction: row;
+  .sidebar-open {
+    width: 230px;
+  }
+  .sidebar-shrink {
+    width: 73px;
+    .sidebar-title {
+      .app-logo {
+        display: none;
+      }
+      p {
+        display: none;
+      }
+    }
+    .sidebar-list-item-text {
+      opacity: 0;
+    }
+    .sidebar-btn {
+      transform: rotate(180deg);
+    }
+  }
   .app-sidebar {
     height: 100%;
-    width: 230px;
     flex-shrink: 1;
-    transition: width 0.5s ease-in-out;
+    transition: width 0.66s cubic-bezier(0.66, 0, 0.01, 1);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -133,9 +175,21 @@ onMounted(() => {});
         font-weight: 700;
         font-size: 25px;
         color: white;
-        svg {
-          width: 24px;
-          height: 24px;
+        flex-shrink: 0;
+        .sidebar-btn {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 30px;
+          height: 30px;
+          border-radius: 4px;
+          &:hover {
+            background-color: #36393f;
+          }
+          svg {
+            width: 24px;
+            height: 24px;
+          }
         }
         .app-logo {
           height: 36px;
@@ -147,21 +201,17 @@ onMounted(() => {});
         width: 100%;
       }
     }
-    .sidebar-bottom {
-      width: 100%;
-      height: 100px;
-      background-color: #5372f0;
-    }
   }
   .app-content {
     height: 100%;
     flex-grow: 1;
     background-color: #2f3136;
     border-start-start-radius: 8px;
+    overflow: hidden;
   }
 }
+
 .sidebar-list {
-  user-select: none;
   // 点击后
   .sidebar-list-activity {
     .sidebar-list-item-content {
@@ -236,10 +286,10 @@ onMounted(() => {});
       .sidebar-list-item-icon {
         width: 49px;
         height: 49px;
-        margin-right: 2px;
         display: flex;
         justify-content: center;
         align-items: center;
+        flex-shrink: 0;
         svg {
           width: 24px;
           height: 24px;
@@ -248,12 +298,19 @@ onMounted(() => {});
       }
       .sidebar-list-item-text {
         white-space: nowrap;
-        font-weight: bold;
-        font-family: "微軟正黑體", sans-serif;
-        font-size: 16px;
-        //letter-spacing: 1px;
+        font-weight: 600;
+        font-family: "monospace", sans-serif;
+        font-size: 15px;
+        margin-left: 4px;
+        transition: opacity 0.5s cubic-bezier(0.66, 0, 0.01, 1);
       }
     }
   }
+}
+.sidebar-bottom {
+  width: 100%;
+  background-color: #292b2f;
+  display: flex;
+  flex-direction: column-reverse;
 }
 </style>

@@ -1,6 +1,6 @@
 @import "./base.scss";
 
-
-.user-none{
+.user-none {
   user-select: none;
+  -webkit-user-select: none;
 }

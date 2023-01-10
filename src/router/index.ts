@@ -11,13 +11,56 @@ const router = createRouter({
     {
       path: "/login",
       name: "login",
-      component: () => import("@views/AppHome.vue"),
+      component: () => import("@views/appHome/AppHome.vue"),
     },
     {
       path: "/home",
       name: "home",
-      component: () => import("@views/AppHome.vue"),
-      children: [],
+      redirect: "/home/device",
+      component: () => import("@views/appHome/AppHome.vue"),
+      children: [
+        {
+          path: "/home/device",
+          name: "device",
+          component: () => import("@views/appHome/page/HomeDevice.vue"),
+        },
+        {
+          path: "/home/board",
+          name: "board",
+          component: () => import("@views/appHome/page/HomeBoard.vue"),
+        },
+        {
+          path: "/home/rule",
+          name: "rule",
+          component: () => import("@views/appHome/page/HomeRule.vue"),
+        },
+        {
+          path: "/home/scene",
+          name: "scene",
+          component: () => import("@views/appHome/page/HomeScene.vue"),
+        },
+        {
+          path: "/home/user",
+          name: "user",
+          component: () => import("@views/appHome/page/HomeUser.vue"),
+        },
+        {
+          path: "/home/plugin",
+          name: "plugin",
+          component: () => import("@views/appHome/page/HomePlugin.vue"),
+        },
+        {
+          path: "/home/firmware",
+          name: "firmware",
+          component: () => import("@views/appHome/page/HomeFirmware.vue"),
+        },
+      ],
+    },
+    // 错误的路由重定向的404页面
+    {
+      path: "/:pathMatch(.*)*",
+      name: "404",
+      component: () => import("@views/404.vue"),
     },
   ],
 });
