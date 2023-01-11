@@ -16,6 +16,7 @@ const app = createApp(App);
   document.body.classList.add(isPC() ? "pc" : "htm");
   // 装载全局store/pinia
   app.use(createPinia());
+
   // 装载路由
   await Promise.all([setupRouter(app)]);
   // 初始化全局组件

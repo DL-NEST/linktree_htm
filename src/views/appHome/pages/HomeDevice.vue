@@ -1,5 +1,7 @@
 <template>
-  <div class="HomeDevice">device</div>
+  <div class="HomeDevice">
+    <el-button>qwsdvavsf</el-button>
+  </div>
 </template>
 
 <script setup lang="ts"></script>
