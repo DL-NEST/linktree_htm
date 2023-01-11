@@ -9,6 +9,7 @@ declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     AppCtrl: typeof import('./src/components/AppCtrl.vue')['default']
     ElButton: typeof import('element-plus/es')['ElButton']
+    ElTag: typeof import('element-plus/es')['ElTag']
     IconCommunity: typeof import('./src/components/icons/IconCommunity.vue')['default']
     IconDocumentation: typeof import('./src/components/icons/IconDocumentation.vue')['default']
     IconEcosystem: typeof import('./src/components/icons/IconEcosystem.vue')['default']

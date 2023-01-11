@@ -11,6 +11,7 @@ import setupGlobalComponents from "@/components/global";
 
 const app = createApp(App);
 
+
 (async function setupApp() {
   //判断桌面和网页
   document.body.classList.add(isPC() ? "pc" : "htm");

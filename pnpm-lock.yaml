@@ -6,7 +6,7 @@ specifiers:
   '@tauri-apps/cli': ^1.2.2
   '@types/fabric': ^4.5.14
   '@types/jsdom': ^20.0.1
-  '@types/node': ^18.11.12
+  '@types/node': ^18.11.13
   '@vitejs/plugin-vue': ^4.0.0
   '@vitejs/plugin-vue-jsx': ^3.0.0
   '@vue/eslint-config-prettier': ^7.0.0
