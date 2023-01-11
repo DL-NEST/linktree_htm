@@ -30,12 +30,12 @@
             <div class="sidebar-list-item-content user-none">
               <div class="sidebar-list-item-icon">
                 <svg-icon
-                  :name="'sidebar_' + item.icon"
+                  :name="'sidebar_' + item.path"
                   :color="item.activity ? '#ffffff' : '#b9bbbe'"
                 ></svg-icon>
               </div>
               <div class="sidebar-list-item-text">
-                {{ item.name }}
+                {{ $t(`sidebar.${item.path}`) }}
               </div>
             </div>
           </div>
@@ -61,45 +61,37 @@ import { useRoute, useRouter } from "vue-router";
 const $router = useRouter();
 
 type sidebarType = {
-  icon: string;
-  name: string;
+  path: string;
   activity: boolean;
 };
 let sidebarState = ref<boolean>(true);
 let sidebarList = reactive<sidebarType[]>([
   {
-    icon: "device",
-    name: "项目管理",
+    path: "device",
     activity: true,
   },
   {
-    icon: "board",
-    name: "数据看板",
+    path: "board",
     activity: false,
   },
   {
-    icon: "rule",
-    name: "设备规则",
+    path: "rule",
     activity: false,
   },
   {
-    icon: "scene",
-    name: "场景列表",
+    path: "scene",
     activity: false,
   },
   {
-    icon: "user",
-    name: "用户管理",
+    path: "user",
     activity: false,
   },
   {
-    icon: "plugin",
-    name: "系统插件",
+    path: "plugin",
     activity: false,
   },
   {
-    icon: "firmware",
-    name: "固件市场",
+    path: "firmware",
     activity: false,
   },
 ]);
@@ -110,7 +102,7 @@ function setState() {
 
 onMounted(() => {
   for (let i = 0; i < sidebarList.length; i++) {
-    if (sidebarList[i].icon === useRoute().name) {
+    if (sidebarList[i].path === useRoute().name) {
       item_btn(sidebarList[i]);
     }
   }
@@ -122,7 +114,7 @@ function item_btn(item: sidebarType) {
     i.activity = false;
   });
   item.activity = true;
-  $router.push(`/home/${item.icon}`);
+  $router.push(`/home/${item.path}`);
 }
 
 onMounted(() => {});

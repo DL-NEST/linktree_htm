@@ -8,16 +8,16 @@ import App from "./App.vue";
 import { setupRouter } from "./router";
 import { isPC } from "@/tauri";
 import setupGlobalComponents from "@/components/global";
+import { locales } from "@/utils/locales";
 
 const app = createApp(App);
-
 
 (async function setupApp() {
   //判断桌面和网页
   document.body.classList.add(isPC() ? "pc" : "htm");
   // 装载全局store/pinia
   app.use(createPinia());
-
+  app.use(locales);
   // 装载路由
   await Promise.all([setupRouter(app)]);
   // 初始化全局组件

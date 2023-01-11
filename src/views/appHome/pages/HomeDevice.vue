@@ -1,15 +1,17 @@
 <template>
   <div class="HomeDevice">
-    <el-button>qwsdvavsf</el-button>
-    <el-tag>{{ aa }}</el-tag>
-    <el-tag>{{ ac }}</el-tag>
+    <el-button @click="toggles">语言切换</el-button>
   </div>
 </template>
 
 <script setup lang="ts">
-const aa = import.meta.env.MODE;
-const ac = import.meta.env.DEV;
 import { onMounted } from "vue";
+import { useI18n } from "vue-i18n";
+const { locale } = useI18n();
+
+function toggles() {
+  locale.value = locale.value === "zh" ? "en" : "zh";
+}
 
 onMounted(() => {
   console.log(import.meta.env);
