@@ -35,12 +35,7 @@
     "
   >
     <ul class="YMenu-list" v-for="(list, index) in menuData" :key="index">
-      <li
-        class="YMenu-item"
-        v-for="(item, index) in list"
-        @click=""
-        :key="index"
-      >
+      <li class="YMenu-item" v-for="(item, index) in list" :key="index">
         <button class="menu-button">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -67,7 +62,12 @@
 <script lang="ts" setup>
 import { NButton, NDataTable } from "naive-ui";
 import { onMounted, ref } from "vue";
-import type { Process, MenuOp, menuList, processManageType } from "@/views/win/type";
+import type {
+  Process,
+  MenuOp,
+  menuList,
+  processManageType,
+} from "@/views/win/type";
 
 const menuData: menuList[][] = [
   [

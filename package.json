@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "@tauri-apps/api": "^1.2.0",
+    "@vueuse/core": "^9.10.0",
     "animate.css": "^4.1.1",
     "axios": "^1.2.1",
     "element-plus": "^2.2.28",

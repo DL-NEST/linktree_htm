@@ -20,12 +20,12 @@ export default defineConfig(() => {
       VueI18nPlugin({
         include: path.resolve(process.cwd(), "src/locales/**"),
       }),
-      visualizer({
-        open: true, //注意这里要设置为true，否则无效
-        gzipSize: true,
-        brotliSize: true,
-        filename: "build_analyse.html",
-      }),
+      // visualizer({
+      //   open: true, //注意这里要设置为true，否则无效
+      //   gzipSize: true,
+      //   brotliSize: true,
+      //   filename: "build_analyse.html",
+      // }),
       createSvgIconsPlugin({
         iconDirs: [path.resolve(process.cwd(), "src/assets/icons")],
         symbolId: "icon-[dir]-[name]",
@@ -42,6 +42,15 @@ export default defineConfig(() => {
         resolvers: [ElementPlusResolver()],
       }),
     ],
+    server: {
+      proxy: {
+        "/api": {
+          target: "http://localhost:5523/",
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/api/, ""),
+        },
+      },
+    },
     resolve: {
       alias: {
         "@": fileURLToPath(new URL("./src", import.meta.url)),
@@ -49,6 +58,7 @@ export default defineConfig(() => {
       },
     },
     build: {
+      chunkSizeWarningLimit: 2000,
       cssCodeSplit: true,
       sourcemap: false,
       minify: "esbuild",

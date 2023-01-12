@@ -10,5 +10,8 @@ export const zh = {
       plugin: "系统插件",
       firmware: "固件市场",
     },
+    message: {
+      reqErr: "请求失败",
+    },
   },
 };

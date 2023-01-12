@@ -10,5 +10,8 @@ export const en = {
       plugin: "System Plugin",
       firmware: "Firmware Market",
     },
+    message: {
+      reqErr: "request error",
+    },
   },
 };

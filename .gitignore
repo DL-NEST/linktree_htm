@@ -27,3 +27,4 @@ coverage
 *.sln
 *.sw?
 !/src/views/win/translation/translate.vue
+!/build_analyse.html
