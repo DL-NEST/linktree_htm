@@ -1,5 +1,6 @@
 import axios, { type AxiosRequestConfig } from "axios";
 import { ElMessage } from "element-plus";
+import { useStorageStore } from "@/stores/StorageStore";
 /**
  * @Description 设置axios，注册拦截器
  */
@@ -19,8 +20,9 @@ const instance = axios.create({
 // 请求拦截器
 instance.interceptors.request.use(
   (requestConfig) => {
+    const useCounter = useStorageStore();
     requestConfig.headers = {
-      access_token: "test",
+      access_token: useCounter.access_token,
     };
     if (/^(POST|PUT|post|put)$/i.test(requestConfig.method as string)) {
       requestConfig.headers = {
