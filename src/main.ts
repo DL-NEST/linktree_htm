@@ -9,6 +9,7 @@ import { setupRouter } from "./router";
 import { isPC } from "@/tauri";
 import setupGlobalComponents from "@/components/global";
 import { locales } from "@/utils/locales";
+import { pinia } from "@/stores";
 
 const app = createApp(App);
 
@@ -16,7 +17,7 @@ const app = createApp(App);
   //判断桌面和网页
   document.body.classList.add(isPC() ? "pc" : "htm");
   // 装载全局store/pinia
-  app.use(createPinia());
+  app.use(pinia);
   app.use(locales);
   // 装载路由
   await Promise.all([setupRouter(app)]);

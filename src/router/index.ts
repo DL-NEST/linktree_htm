@@ -1,7 +1,7 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 import type { App } from "vue";
 
-const router = createRouter({
+export const router = createRouter({
   //import.meta.env.BASE_URL
   history: createWebHashHistory(),
   routes: [
