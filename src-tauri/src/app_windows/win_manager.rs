@@ -1,6 +1,6 @@
 use tauri::{App, Wry};
 
-
+#[allow(dead_code)]
 pub fn win_manager(app : &mut App<Wry>){
     tauri::WindowBuilder::new(
         app,

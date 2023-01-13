@@ -1,5 +1,6 @@
 import { fileURLToPath, URL } from "node:url";
 import path from "path";
+import { resolve } from "path";
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import vueJsx from "@vitejs/plugin-vue-jsx";
@@ -62,7 +63,12 @@ export default defineConfig(() => {
       cssCodeSplit: true,
       sourcemap: false,
       minify: "esbuild",
-      rollupOptions: {},
+      rollupOptions: {
+        input: {
+          main: resolve(__dirname, "index.html"),
+          splashscreen: resolve(__dirname, "splashscreen/index.html"),
+        },
+      },
     },
   };
 });

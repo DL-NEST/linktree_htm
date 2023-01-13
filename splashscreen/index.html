@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>linktree</title>
+  </head>
+  <body>
+    <div class="main" data-tauri-drag-region="">
+      <div class="spinner">
+        <div class="rect1"></div>
+        <div class="rect2"></div>
+        <div class="rect3"></div>
+        <div class="rect4"></div>
+        <div class="rect5"></div>
+      </div>
+      <p>loading...</p>
+    </div>
+    <script type="module" src="/splashscreen/splashscreen.ts"></script>
+  </body>
+  <style>
+      * {
+          padding: 0;
+          margin: 0;
+          box-sizing: border-box;
+      }
+    html,
+    body {
+        width: 100%;
+        height: 100%;
+        padding: 1px;
+        box-sizing: border-box;
+    }
+    .main {
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #282b30;
+      color: #ffffff;
+      user-select: none;
+      border-radius: 8px;
+        box-shadow: 0 0 1px 1px rgba(255, 255, 255, 0.1);
+    }
+    .spinner {
+      margin: 35px auto;
+      width: 80px;
+      height: 50px;
+      text-align: center;
+      font-size: 10px;
+    }
+    .spinner > div {
+      background-color: #ffffff;
+      height: 100%;
+      width: 8px;
+      display: inline-block;
+      -webkit-animation: sk-stretchdelay 1s infinite ease-in-out;
+      animation: sk-stretchdelay 1s infinite ease-in-out;
+    }
+    .spinner .rect2 {
+      -webkit-animation-delay: -0.9s;
+      animation-delay: -0.9s;
+    }
+    .spinner .rect3 {
+      -webkit-animation-delay: -0.8s;
+      animation-delay: -0.8s;
+    }
+    .spinner .rect4 {
+      -webkit-animation-delay: -0.7s;
+      animation-delay: -0.7s;
+    }
+    .spinner .rect5 {
+      -webkit-animation-delay: -0.6s;
+      animation-delay: -0.6s;
+    }
+    @-webkit-keyframes sk-stretchdelay {
+      0%,
+      40%,
+      100% {
+        -webkit-transform: scaleY(0.4);
+      }
+      20% {
+        -webkit-transform: scaleY(1);
+      }
+    }
+    @keyframes sk-stretchdelay {
+      0%,
+      40%,
+      100% {
+        transform: scaleY(0.4);
+        -webkit-transform: scaleY(0.4);
+      }
+      20% {
+        transform: scaleY(1);
+        -webkit-transform: scaleY(1);
+      }
+    }
+  </style>
+</html>
