@@ -49,7 +49,8 @@ defineProps<{
       background-color: #36393f;
     }
     img {
-      height: 100%;
+      width: 40px;
+      height: 40px;
       border-radius: 50%;
       margin-right: 7px;
       margin-left: 4.5px;

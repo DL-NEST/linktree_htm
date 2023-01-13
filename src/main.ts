@@ -1,5 +1,4 @@
 import { createApp } from "vue";
-import { createPinia } from "pinia";
 import "virtual:svg-icons-register";
 // css
 import "./style/index.scss";
@@ -10,7 +9,6 @@ import { isPC } from "@/tauri";
 import setupGlobalComponents from "@/components/global";
 import { locales } from "@/utils/locales";
 import { pinia } from "@/stores";
-import { invoke } from "@tauri-apps/api/tauri";
 
 const app = createApp(App);
 

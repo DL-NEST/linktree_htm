@@ -1,4 +1,5 @@
-import request from "@/service/request";
+import request from "@/service/request/request";
+import { Entity } from "@/service/request/entity";
 
 /**
  * @Description 健康检查
@@ -13,12 +14,24 @@ export function getHealthy() {
 /**
  * @Description 用户登录
  * @param params
- * @return UserRouterType
+ * @return LoginRouterType
  */
-export function login(params: UserLoginParam) {
-  return request<UserRouterType>({
+export function login(params: LoginParam) {
+  return request<LoginRouterType>({
     url: "/login",
     method: "POST",
     data: params,
   });
 }
+
+/**
+ * @Description 用户实体请求对象
+ */
+export const userEntity = new Entity<
+  UserQueryType,
+  UserDataType,
+  UserRouterType
+>({
+  version: "v1",
+  entityName: "user",
+});
