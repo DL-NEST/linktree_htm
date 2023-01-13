@@ -13,7 +13,7 @@
   },
   "tauri": {
     "allowlist": {
-      "all":  true
+      "all": true
     },
     "systemTray": {
       "iconPath": "icons/icon.png",
@@ -68,7 +68,19 @@
         "resizable": true,
         "focus": true,
         "decorations": false,
-        "transparent": true
+        "transparent": true,
+        "visible": false
+      },
+      {
+        "width": 300,
+        "height": 350,
+        "decorations": false,
+        "center": true,
+        "resizable": false,
+        "visible": false,
+        "transparent": true,
+        "url": "splashscreen/index.html",
+        "label": "splashscreen"
       }
     ]
   }

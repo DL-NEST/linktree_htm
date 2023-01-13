@@ -19,6 +19,7 @@ fn main() {
       .setup(set_setup())
       //设置ipc消息处理函数
       .invoke_handler(ipc_handler())
+
       // 运行程序
       .run(context)
       .expect("运行 tauri 应用程序时出错");

@@ -10,6 +10,7 @@ import { isPC } from "@/tauri";
 import setupGlobalComponents from "@/components/global";
 import { locales } from "@/utils/locales";
 import { pinia } from "@/stores";
+import { invoke } from "@tauri-apps/api/tauri";
 
 const app = createApp(App);
 
@@ -26,3 +27,10 @@ const app = createApp(App);
   // 挂载实列
   app.mount("#app");
 })();
+
+document.onreadystatechange = function () {
+  if (document.readyState == "complete") {
+    // 页面加载完毕
+    // invoke("close_splashscreen");
+  }
+};

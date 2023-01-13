@@ -11,7 +11,7 @@ use tauri::{App, Manager, Wry};
 use crate::app_options::tray::{new_tray};
 use crate::app_options::global_shortcuts::{register_shortcuts};
 use crate::app_options::events::{register_events};
-use crate::app_windows::translate::translate;
+
 
 pub fn set_setup() -> fn(&mut App<Wry>) -> Result<(), Box<dyn Error>> {
     |app| {
@@ -24,11 +24,11 @@ pub fn set_setup() -> fn(&mut App<Wry>) -> Result<(), Box<dyn Error>> {
 
         //translate(app);
 
-        for x in app.app_handle().windows().borrow() {
-            println!("{}",x.0);
-            // x.1.open_devtools();
-        }
-
+        // for x in app.app_handle().windows().borrow() {
+        //     println!("{}",x.0);
+        //     // x.1.open_devtools();
+        // }
+        //
 
         Ok(())
     }
