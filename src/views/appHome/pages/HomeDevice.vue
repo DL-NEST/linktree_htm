@@ -3,6 +3,7 @@
     <el-button @click="toggles">语言切换</el-button>
     <el-button @click="healthy">请求</el-button>
     <el-button @click="healthy_only">单独请求</el-button>
+    <el-button @click="restful">restful</el-button>
     <el-tag>{{ useCounter.access_token }}</el-tag>
   </div>
 </template>
@@ -11,9 +12,8 @@
 import { onMounted } from "vue";
 import { useI18n } from "vue-i18n";
 const { locale } = useI18n();
-import { getHealthy, login } from "@/service";
+import { getHealthy, login, userEntity } from "@/service";
 import { useStorageStore } from "@/stores/StorageStore";
-
 const useCounter = useStorageStore();
 
 function toggles() {
@@ -35,6 +35,12 @@ async function healthy_only() {
   if (data) {
     console.log(data.data.username);
   }
+}
+
+function restful() {
+  userEntity.get().then((data) => {
+    console.log(data.data[0]);
+  });
 }
 
 onMounted(() => {});
