@@ -14,11 +14,21 @@ type UserQueryType = {
 };
 
 type UserDataType = {
-  username: string;
-  token: string;
+  UserID: string;
+  UserName: string;
+  Tel: string;
+  Password: string;
+  CreateTime: string;
+  HeadUri: string;
+  Role: string;
 };
 
 type UserRouterType = {
-  username: string;
-  token: string;
+  UserID: string;
+  UserName: string;
+  Tel: string;
+  Password: string;
+  CreateTime: string;
+  HeadUri: string;
+  Role: string;
 };
