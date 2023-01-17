@@ -30,7 +30,7 @@ import { isPC, appMinimize, appMaximize, appClose } from "@/tauri";
   justify-content: space-between;
   align-items: center;
   padding-left: 10px;
-  flex-shrink: 1;
+  flex-shrink: 0;
   .app-title {
     font-family: "Outfit", sans-serif;
     font-size: 0.6em;

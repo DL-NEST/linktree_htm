@@ -18,7 +18,9 @@ export function createSocket() {
   Socket && Socket.close();
   if (!Socket) {
     console.log("建立websocket连接");
-    Socket = new WebSocket("");
+    Socket = new WebSocket(
+      "ws://localhost:5523/v1/socket/linkSocket?token=dqfcqfqf"
+    );
     Socket.onopen = onopenWS;
     Socket.onmessage = onmessageWS;
     Socket.onerror = onerrorWS;
@@ -36,7 +38,9 @@ const onopenWS = () => {
 /**
  * @Description websocket消息回调
  */
-const onmessageWS = () => {};
+const onmessageWS = (ev: MessageEvent) => {
+  console.log(ev);
+};
 /**
  * @Description websocket错误
  */

@@ -1,17 +1,14 @@
-
-pub mod global_shortcuts;
-pub mod tray;
-pub mod menu;
-pub mod ipc_handler;
 pub mod events;
+pub mod global_shortcuts;
+pub mod ipc_handler;
+pub mod menu;
+pub mod tray;
 
-use std::borrow::{Borrow};
+use crate::app_options::events::register_events;
+use crate::app_options::global_shortcuts::register_shortcuts;
+use crate::app_options::tray::new_tray;
 use std::error::Error;
-use tauri::{App, Manager, Wry};
-use crate::app_options::tray::{new_tray};
-use crate::app_options::global_shortcuts::{register_shortcuts};
-use crate::app_options::events::{register_events};
-
+use tauri::{App, Wry};
 
 pub fn set_setup() -> fn(&mut App<Wry>) -> Result<(), Box<dyn Error>> {
     |app| {

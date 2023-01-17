@@ -147,7 +147,7 @@ onMounted(() => {});
   }
   .app-sidebar {
     height: 100%;
-    flex-shrink: 1;
+    flex-shrink: 0;
     transition: width 0.66s cubic-bezier(0.66, 0, 0.01, 1);
     display: flex;
     flex-direction: column;

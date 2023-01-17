@@ -4,11 +4,19 @@ import "virtual:svg-icons-register";
 import "./style/index.scss";
 // app
 import App from "./App.vue";
-import { setupRouter } from "./router";
+import { setupRouter } from "@/router";
 import { isPC } from "@/tauri";
 import setupGlobalComponents from "@/components/global";
 import { locales } from "@/utils/locales";
 import { pinia } from "@/stores";
+import { createSocket } from "@/service/websocket";
+
+document.onreadystatechange = function () {
+  if (document.readyState == "complete") {
+    // 页面加载完毕
+    // invoke("close_splashscreen");
+  }
+};
 
 const app = createApp(App);
 
@@ -26,9 +34,5 @@ const app = createApp(App);
   app.mount("#app");
 })();
 
-document.onreadystatechange = function () {
-  if (document.readyState == "complete") {
-    // 页面加载完毕
-    // invoke("close_splashscreen");
-  }
-};
+// socket连接
+// createSocket();
