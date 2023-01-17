@@ -3,9 +3,8 @@ import { ElMessage } from "element-plus";
 import { useStorageStore } from "@/stores/StorageStore";
 /**
  * @Description 设置axios，注册拦截器
+ * 开发环境使用node代理，生产环境分desktop = 绝对地址 htm = 代理地址
  */
-// 判断环境请求地址
-// 开发环境使用node代理，生产环境分desktop = 绝对地址 htm = 代理地址
 function getBaseUrl(): string {
   if (!import.meta.env.DEV && import.meta.env.MODE === "desktop") {
     return "http://localhost:5523";
@@ -15,19 +14,19 @@ function getBaseUrl(): string {
 // 创建axios
 const instance = axios.create({
   baseURL: getBaseUrl(),
-  timeout: 5000,
+  timeout: 2000,
 });
 // 请求拦截器
 instance.interceptors.request.use(
   (requestConfig) => {
     const useCounter = useStorageStore();
     requestConfig.headers = {
-      access_token: useCounter.access_token,
+      Authorization: useCounter.access_token,
     };
+    // requestConfig.method 断言string
     if (/^(POST|PUT|post|put)$/i.test(requestConfig.method as string)) {
       requestConfig.headers = {
         // TODO: 在浏览器缓存获取token
-        access_token: "test",
         "Content-Type": "application/json",
       };
     }

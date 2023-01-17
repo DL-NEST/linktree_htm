@@ -40,6 +40,8 @@ async function healthy_only() {
 function restful() {
   userEntity.get().then((data) => {
     console.log(data.data[0]);
+    console.log(data.data[0].UserID);
+    console.log(data.data[0].Password);
   });
 }
 
