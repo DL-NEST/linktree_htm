@@ -2,7 +2,11 @@ use tauri::api::notification::Notification;
 use tauri::{Invoke, Manager, Wry};
 
 pub fn ipc_handler() -> fn(Invoke<Wry>) {
-    return tauri::generate_handler![my_custom_command, close_splashscreen, ready_splashscreen];
+    tauri::generate_handler![
+        my_custom_command,
+        close_splashscreen,
+        ready_splashscreen
+    ]
 }
 
 #[tauri::command]

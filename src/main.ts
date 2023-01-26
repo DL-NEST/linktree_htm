@@ -21,8 +21,6 @@ document.onreadystatechange = function () {
 const app = createApp(App);
 
 (async function setupApp() {
-  //判断桌面和网页
-  document.body.classList.add(isPC() ? "pc" : "htm");
   // 装载全局store/pinia
   app.use(pinia);
   app.use(locales);
