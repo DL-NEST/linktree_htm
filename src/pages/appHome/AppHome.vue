@@ -55,7 +55,7 @@
 <script setup lang="ts">
 import { onMounted, reactive, ref } from "vue";
 import SvgIcon from "@/components/global/svgIcon/SvgIcon.vue";
-import SidebarUser from "@views/appHome/components/SidebarUser.vue";
+import SidebarUser from "@pages/appHome/components/SidebarUser.vue";
 import { useRoute, useRouter } from "vue-router";
 
 const $router = useRouter();

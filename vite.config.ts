@@ -55,7 +55,7 @@ export default defineConfig(() => {
     resolve: {
       alias: {
         "@": fileURLToPath(new URL("./src", import.meta.url)),
-        "@views": fileURLToPath(new URL("./src/views", import.meta.url)),
+        "@pages": fileURLToPath(new URL("./src/pages", import.meta.url)),
       },
     },
     build: {

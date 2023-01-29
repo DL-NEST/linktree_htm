@@ -48,7 +48,7 @@ pub fn set_setup() -> AppSetup {
             "main", /* the unique window label */
             tauri::WindowUrl::App("index.html".parse().unwrap()),
         )
-            .inner_size(1260_f64, 760_f64)
+            .inner_size(1280_f64, 760_f64)
             .decorations(false)
             .center()
             .resizable(true)

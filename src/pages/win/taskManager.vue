@@ -67,7 +67,7 @@ import type {
   MenuOp,
   menuList,
   processManageType,
-} from "@/views/win/type";
+} from "@/pages/win/type";
 
 const menuData: menuList[][] = [
   [

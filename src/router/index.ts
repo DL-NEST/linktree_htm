@@ -7,66 +7,66 @@ export const router = createRouter({
   routes: [
     {
       path: "/",
-      redirect: "/init",
+      redirect: "/home",
     },
     {
       path: "/init",
       name: "init",
       redirect: "/db",
-      component: () => import("@views/init/InitPage.vue"),
+      component: () => import("@pages/init/InitPage.vue"),
       children: [
         {
           path: "/db",
           name: "db",
-          component: () => import("@views/init/dbPage.vue"),
+          component: () => import("@pages/init/dbPage.vue"),
         },
       ],
     },
     {
       path: "/login",
       name: "login",
-      component: () => import("@views/appHome/AppHome.vue"),
+      component: () => import("@pages/appHome/AppHome.vue"),
     },
     {
       path: "/home",
       name: "home",
       redirect: "/home/device",
-      component: () => import("@views/appHome/AppHome.vue"),
+      component: () => import("@pages/appHome/AppHome.vue"),
       children: [
         {
           path: "/home/device",
           name: "device",
-          component: () => import("@views/appHome/pages/HomeDevice.vue"),
+          component: () => import("@pages/appHome/pages/HomeDevice.vue"),
         },
         {
           path: "/home/board",
           name: "board",
-          component: () => import("@views/appHome/pages/HomeBoard.vue"),
+          component: () => import("@pages/appHome/pages/HomeBoard.vue"),
         },
         {
           path: "/home/rule",
           name: "rule",
-          component: () => import("@views/appHome/pages/HomeRule.vue"),
+          component: () => import("@pages/appHome/pages/HomeRule.vue"),
         },
         {
           path: "/home/scene",
           name: "scene",
-          component: () => import("@views/appHome/pages/HomeScene.vue"),
+          component: () => import("@pages/appHome/pages/HomeScene.vue"),
         },
         {
           path: "/home/user",
           name: "user",
-          component: () => import("@views/appHome/pages/HomeUser.vue"),
+          component: () => import("@pages/appHome/pages/HomeUser.vue"),
         },
         {
           path: "/home/plugin",
           name: "plugin",
-          component: () => import("@views/appHome/pages/HomePlugin.vue"),
+          component: () => import("@pages/appHome/pages/HomePlugin.vue"),
         },
         {
           path: "/home/firmware",
           name: "firmware",
-          component: () => import("@views/appHome/pages/HomeFirmware.vue"),
+          component: () => import("@pages/appHome/pages/HomeFirmware.vue"),
         },
       ],
     },
@@ -74,7 +74,7 @@ export const router = createRouter({
     {
       path: "/:pathMatch(.*)*",
       name: "404",
-      component: () => import("@views/404.vue"),
+      component: () => import("@pages/404.vue"),
     },
   ],
 });
