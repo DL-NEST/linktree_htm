@@ -9,6 +9,9 @@ module.exports = {
     "@vue/eslint-config-typescript",
     "@vue/eslint-config-prettier",
   ],
+  env:{
+
+  },
   overrides: [
     {
       files: ["cypress/e2e/**/*.{cy,spec}.{js,ts,jsx,tsx}"],

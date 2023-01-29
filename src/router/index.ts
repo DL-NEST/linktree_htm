@@ -7,7 +7,20 @@ export const router = createRouter({
   routes: [
     {
       path: "/",
-      redirect: "/home",
+      redirect: "/init",
+    },
+    {
+      path: "/init",
+      name: "init",
+      redirect: "/db",
+      component: () => import("@views/init/InitPage.vue"),
+      children: [
+        {
+          path: "/db",
+          name: "db",
+          component: () => import("@views/init/dbPage.vue"),
+        },
+      ],
     },
     {
       path: "/login",
