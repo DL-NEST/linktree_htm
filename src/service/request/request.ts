@@ -61,8 +61,8 @@ export function request<T>(config: AxiosRequestConfig): Promise<Restful<T>> {
     .then((res) => {
       return res.data;
     })
-    .catch(() => {
-      return null;
+    .catch((err) => {
+      return Promise.reject(err);
     });
 }
 

@@ -21,6 +21,7 @@ export default defineConfig(() => {
       VueI18nPlugin({
         include: path.resolve(process.cwd(), "src/locales/**"),
       }),
+      // 打包大小图像
       // visualizer({
       //   open: true, //注意这里要设置为true，否则无效
       //   gzipSize: true,
@@ -64,6 +65,7 @@ export default defineConfig(() => {
       sourcemap: false,
       minify: "esbuild",
       rollupOptions: {
+        // 多页应用
         input: {
           main: resolve(__dirname, "index.html"),
           splashscreen: resolve(__dirname, "splashscreen/index.html"),

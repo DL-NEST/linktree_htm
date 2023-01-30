@@ -8,12 +8,8 @@
         <div class="sidebar-title user-none">
           <div class="app-logo"></div>
           <p>linktree</p>
-          <div class="sidebar-btn">
-            <svg-icon
-              name="sidebar_list"
-              color="#b9bbbe"
-              @click="setState"
-            ></svg-icon>
+          <div class="sidebar-btn" @click="setState">
+            <svg-icon name="sidebar_list" color="#b9bbbe"></svg-icon>
           </div>
         </div>
         <div class="sidebar-list">

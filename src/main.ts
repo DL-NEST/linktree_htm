@@ -5,10 +5,10 @@ import "./style/index.scss";
 // app
 import App from "./App.vue";
 import { setupRouter } from "@/router";
-import { isPC } from "@/tauri";
 import setupGlobalComponents from "@/components/global";
 import { locales } from "@/utils/locales";
 import { pinia } from "@/stores";
+import { isPC } from "@/tauri";
 import { createSocket } from "@/service/websocket";
 
 document.onreadystatechange = function () {

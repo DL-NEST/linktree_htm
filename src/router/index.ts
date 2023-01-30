@@ -7,18 +7,33 @@ export const router = createRouter({
   routes: [
     {
       path: "/",
-      redirect: "/home",
+      redirect: "/init",
     },
     {
       path: "/init",
       name: "init",
       redirect: "/db",
-      component: () => import("@pages/init/InitPage.vue"),
+      component: () => import("@pages/init/index.vue"),
       children: [
         {
           path: "/db",
           name: "db",
           component: () => import("@pages/init/dbPage.vue"),
+        },
+        {
+          path: "/redis",
+          name: "redis",
+          component: () => import("@pages/init/redisPage.vue"),
+        },
+        {
+          path: "/setup",
+          name: "setup",
+          component: () => import("@pages/init/setupPage.vue"),
+        },
+        {
+          path: "/result",
+          name: "result",
+          component: () => import("@pages/init/result.vue"),
         },
       ],
     },

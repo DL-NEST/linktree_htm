@@ -4,6 +4,7 @@
     <el-button @click="healthy">请求</el-button>
     <el-button @click="healthy_only">单独请求</el-button>
     <el-button @click="restful">restful</el-button>
+    <el-button @click="init">Init</el-button>
     <el-tag>{{ useCounter.access_token }}</el-tag>
   </div>
 </template>
@@ -14,6 +15,9 @@ import { useI18n } from "vue-i18n";
 const { locale } = useI18n();
 import { getHealthy, login, userEntity } from "@/service";
 import { useStorageStore } from "@/stores/StorageStore";
+import { useRouter } from "vue-router";
+
+const $router = useRouter();
 const useCounter = useStorageStore();
 
 function toggles() {
@@ -43,6 +47,10 @@ function restful() {
     console.log(data.data[0].UserID);
     console.log(data.data[0].Password);
   });
+}
+
+function init() {
+  $router.push("/init");
 }
 
 onMounted(() => {});

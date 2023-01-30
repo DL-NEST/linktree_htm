@@ -1,14 +1,19 @@
 {
   "files": [],
-  "references": [
-    {
-      "path": "./tsconfig.config.json"
+  "references": [],
+  "extends": "@vue/tsconfig/tsconfig.node.json",
+  "jsx": "preserve",
+  "exclude": ["src/**/__tests__/*"],
+  "include": ["vite.config.*", "vitest.config.*", "cypress.config.*", "playwright.config.*","env.d.ts", "src/**/*", "src/**/*.vue","splashscreen/**/*"],
+  "compilerOptions": {
+    "composite": true,
+    "isolatedModules": true,
+    "baseUrl": ".",
+    "lib": [],
+    "paths": {
+      "@/*": ["./src/*"],
+      "@pages/*": ["./src/pages/*"]
     },
-    {
-      "path": "./tsconfig.app.json"
-    },
-    {
-      "path": "./tsconfig.vitest.json"
-    }
-  ]
+    "types": ["node", "jsdom","vite-plugin-svg-icons/client"],
+  }
 }

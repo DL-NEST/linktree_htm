@@ -2,23 +2,31 @@
 /* eslint-disable */
 
 module.exports = {
+  // dark切换模式
   darkMode: 'class',
+  // 预览模式
+  mode: 'jit',
   content: [
-    "./src/views/**/*.{vue,jsx,tsx}",
+    "./src/pages/**/*.{vue,jsx,tsx}",
     "./src/components/**/*.{vue,jsx,tsx}",
     "./src/layouts/**/*.{vue,jsx,tsx}",
   ],
   theme: {
     screens: {
-      dp: "1280px",
-      // => @media (min-width: 1280px) { ... }
+      // dp: "1280px",
+      // // => @media (min-width: 1280px) { ... }
     },
     extend: {
+      // 添加自定义颜色
       colors: {
         bga:{
           light: '#014c72',
           dark: '#a5dffc',
         },
+        fork:{
+          light: '#5865F2',
+          dark: '#5865F2',
+        }
       },
     },
   },
