@@ -7,8 +7,8 @@ import App from "./App.vue";
 import { setupRouter } from "@/router";
 import setupGlobalComponents from "@/components/global";
 import { locales } from "@/utils/locales";
-import { pinia } from "@/stores";
-import { isPC } from "@/tauri";
+import { setupStores } from "@/stores";
+import { isPC } from "@/utils/tauri";
 import { createSocket } from "@/service/websocket";
 
 document.onreadystatechange = function () {
@@ -21,9 +21,9 @@ document.onreadystatechange = function () {
 const app = createApp(App);
 
 (async function setupApp() {
-  // 装载全局store/pinia
-  app.use(pinia);
   app.use(locales);
+  // 装载全局store/pinia
+  setupStores(app);
   // 装载路由
   await Promise.all([setupRouter(app)]);
   // 初始化全局组件

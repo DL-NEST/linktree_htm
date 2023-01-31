@@ -54,7 +54,7 @@ import SvgIcon from "@/components/global/svgIcon/SvgIcon.vue";
 import SidebarUser from "@pages/appHome/components/SidebarUser.vue";
 import { useRoute, useRouter } from "vue-router";
 
-const $router = useRouter();
+const router = useRouter();
 
 type sidebarType = {
   path: string;
@@ -110,7 +110,7 @@ function item_btn(item: sidebarType) {
     i.activity = false;
   });
   item.activity = true;
-  $router.push(`/home/${item.path}`);
+  router.push(`/home/${item.path}`);
 }
 
 onMounted(() => {});

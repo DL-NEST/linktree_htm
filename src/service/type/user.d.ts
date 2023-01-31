@@ -9,8 +9,7 @@ type LoginRouterType = {
 };
 
 type UserQueryType = {
-  username: string;
-  token: string;
+  UserID: string;
 };
 
 type UserDataType = {

@@ -1,6 +1,5 @@
 {
   "files": [],
-  "references": [],
   "extends": "@vue/tsconfig/tsconfig.node.json",
   "jsx": "preserve",
   "exclude": ["src/**/__tests__/*"],
@@ -14,6 +13,7 @@
       "@/*": ["./src/*"],
       "@pages/*": ["./src/pages/*"]
     },
-    "types": ["node", "jsdom","vite-plugin-svg-icons/client"],
-  }
+    "types": ["node","vite-plugin-svg-icons/client","vitest/globals"],
+  },
+  "references": [{ "path": "./tsconfig.test.json" }]
 }

@@ -12,19 +12,20 @@
     "tauri:htm-dev": "vite --mode desktop",
     "tauri:htm-build": "vite build --mode desktop",
     "tauri:preview-desktop": "run-p tauri:htm-build preview",
-    "preview": "vite preview",
     "test:unit": "vitest --environment jsdom --root src/",
     "test:e2e": "start-server-and-test preview :4173 'cypress run --e2e'",
     "test:e2e:dev": "start-server-and-test 'vite dev --port 4173' :4173 'cypress open --e2e'",
     "check:type-check": "vue-tsc --noEmit -p tsconfig.vitest.json --composite false",
     "check:lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
     "docs:dev": "vuepress dev docs",
-    "docs:build": "vuepress build docs"
-  },
-  "lint-staged": {
-
+    "docs:build": "vuepress build docs",
+    "test:coverage": "vitest run --coverage",
+    "test:ui": "vitest --ui",
+    "prepare": "husky install"
   },
   "dependencies": {
+    "@headlessui/vue": "^1.7.8",
+    "@heroicons/vue": "^2.0.14",
     "@tauri-apps/api": "^1.2.0",
     "@vueuse/core": "^9.10.0",
     "animate.css": "^4.1.1",
@@ -47,6 +48,8 @@
     "@types/node": "^18.11.13",
     "@vitejs/plugin-vue": "^4.0.0",
     "@vitejs/plugin-vue-jsx": "^3.0.0",
+    "@vitest/coverage-c8": "^0.28.3",
+    "@vitest/ui": "^0.28.3",
     "@vue/eslint-config-prettier": "^7.0.0",
     "@vue/eslint-config-typescript": "^11.0.0",
     "@vue/test-utils": "^2.2.6",
@@ -56,7 +59,9 @@
     "eslint": "^8.22.0",
     "eslint-plugin-cypress": "^2.12.1",
     "eslint-plugin-vue": "^9.3.0",
+    "husky": "^8.0.0",
     "jsdom": "^20.0.3",
+    "lint-staged": "^13.1.0",
     "npm-run-all": "^4.1.5",
     "postcss": "^8.4.21",
     "prettier": "^2.8.1",
@@ -72,5 +77,9 @@
     "vite-plugin-svg-icons": "^2.0.1",
     "vitest": "^0.25.6",
     "vue-tsc": "^1.0.12"
+  },
+  "lint-staged": {
+    "*.js": "eslint --cache --fix",
+    "*.{js,css,md}": "prettier --write"
   }
 }

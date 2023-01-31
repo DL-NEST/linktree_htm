@@ -1,3 +1,4 @@
+/// <reference types="vitest" />
 import { fileURLToPath, URL } from "node:url";
 import path from "path";
 import { resolve } from "path";
@@ -22,12 +23,13 @@ export default defineConfig(() => {
         include: path.resolve(process.cwd(), "src/locales/**"),
       }),
       // 打包大小图像
-      // visualizer({
-      //   open: true, //注意这里要设置为true，否则无效
-      //   gzipSize: true,
-      //   brotliSize: true,
-      //   filename: "build_analyse.html",
-      // }),
+      visualizer({
+        //注意这里要设置为true，否则无效
+        open: false,
+        gzipSize: true,
+        brotliSize: true,
+        filename: "build_analyse.html",
+      }),
       createSvgIconsPlugin({
         iconDirs: [path.resolve(process.cwd(), "src/assets/icons")],
         symbolId: "icon-[dir]-[name]",
@@ -39,6 +41,8 @@ export default defineConfig(() => {
       // element 自动按需导入
       AutoImport({
         resolvers: [ElementPlusResolver()],
+        imports: ["vitest"],
+        dts: true, // 生成 TypeScript 声明
       }),
       Components({
         resolvers: [ElementPlusResolver()],
@@ -71,6 +75,10 @@ export default defineConfig(() => {
           splashscreen: resolve(__dirname, "splashscreen/index.html"),
         },
       },
+    },
+    test: {
+      globals: true,
+      threads: true,
     },
   };
 });

@@ -1,11 +1,11 @@
 <template>
   <div class="HomeDevice">
     <el-button @click="toggles">语言切换</el-button>
-    <el-button @click="healthy">请求</el-button>
-    <el-button @click="healthy_only">单独请求</el-button>
+    <el-button @click="healthy">healthy</el-button>
+    <el-button @click="post">post</el-button>
     <el-button @click="restful">restful</el-button>
     <el-button @click="init">Init</el-button>
-    <el-tag>{{ useCounter.access_token }}</el-tag>
+    <el-tag>{{ useStorage.access_token }}</el-tag>
   </div>
 </template>
 
@@ -14,11 +14,11 @@ import { onMounted } from "vue";
 import { useI18n } from "vue-i18n";
 const { locale } = useI18n();
 import { getHealthy, login, userEntity } from "@/service";
-import { useStorageStore } from "@/stores/StorageStore";
+import { useStorageStore } from "@/stores/storageStore";
 import { useRouter } from "vue-router";
 
-const $router = useRouter();
-const useCounter = useStorageStore();
+const router = useRouter();
+const useStorage = useStorageStore();
 
 function toggles() {
   locale.value = locale.value === "zh" ? "en" : "zh";
@@ -28,13 +28,13 @@ function healthy() {
   getHealthy().then((data) => {
     console.log(data.data);
   });
-  useCounter.increment();
+  useStorage.increment();
 }
 
-async function healthy_only() {
+async function post() {
   const data = await login({
-    username: "root",
-    password: "qq2002123",
+    username: "ddd",
+    password: "aaa",
   });
   if (data) {
     console.log(data.data.username);
@@ -50,7 +50,7 @@ function restful() {
 }
 
 function init() {
-  $router.push("/init");
+  router.push("/init");
 }
 
 onMounted(() => {});

@@ -3,14 +3,10 @@
 
 module.exports = {
   // dark切换模式
-  darkMode: 'class',
+  darkMode: "class",
   // 预览模式
-  mode: 'jit',
-  content: [
-    "./src/pages/**/*.{vue,jsx,tsx}",
-    "./src/components/**/*.{vue,jsx,tsx}",
-    "./src/layouts/**/*.{vue,jsx,tsx}",
-  ],
+  mode: "jit",
+  content: ["index.html", "./src/**/*.{js,jsx,ts,tsx,vue,html}"],
   theme: {
     screens: {
       // dp: "1280px",
@@ -19,14 +15,14 @@ module.exports = {
     extend: {
       // 添加自定义颜色
       colors: {
-        bga:{
-          light: '#014c72',
-          dark: '#a5dffc',
+        bga: {
+          light: "#014c72",
+          dark: "#a5dffc",
         },
-        fork:{
-          light: '#5865F2',
-          dark: '#5865F2',
-        }
+        fork: {
+          light: "#5865F2",
+          dark: "#5865F2",
+        },
       },
     },
   },

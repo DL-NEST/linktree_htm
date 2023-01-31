@@ -1,6 +1,6 @@
 import axios, { type AxiosRequestConfig } from "axios";
 import { ElMessage } from "element-plus";
-import { useStorageStore } from "@/stores/StorageStore";
+import { useStorageStore } from "@/stores/storageStore";
 /**
  * @Description 设置axios，注册拦截器
  * 开发环境使用node代理，生产环境分desktop = 绝对地址 htm = 代理地址
@@ -26,7 +26,6 @@ instance.interceptors.request.use(
     // requestConfig.method 断言string
     if (/^(POST|PUT|post|put)$/i.test(requestConfig.method as string)) {
       requestConfig.headers = {
-        // TODO: 在浏览器缓存获取token
         "Content-Type": "application/json",
       };
     }
@@ -44,12 +43,14 @@ instance.interceptors.response.use(
   },
   (err) => {
     const { response } = err;
-    if (response) {
-      // 服务器返回错误结果
-      ElMessage.error(`${response.status}:${response.data.msg}`);
-    } else {
-      // 服务器未返回错误结果
-      ElMessage.error("response error");
+    if (import.meta.env.DEV) {
+      if (response) {
+        // 服务器返回错误结果
+        ElMessage.error(`${response.status}:${response.data.msg}`);
+      } else {
+        // 服务器未返回错误结果
+        ElMessage.error("response error");
+      }
     }
     return Promise.reject(err);
   },

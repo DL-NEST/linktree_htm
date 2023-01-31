@@ -17,7 +17,7 @@
 
 <script setup lang="ts">
 import SvgIcon from "@/components/global/svgIcon/SvgIcon.vue";
-import { isPC, appMinimize, appMaximize, appClose } from "@/tauri";
+import { isPC, appMinimize, appMaximize, appClose } from "@/utils/tauri";
 </script>
 
 <style scoped lang="scss">

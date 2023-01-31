@@ -3,59 +3,76 @@
     class="init-content flex flex-col items-center justify-center rounded-xl pl-24 pr-24"
   >
     <p class="mb-8 text-2xl tracking-widest text-white">配置数据库</p>
-    <from-input :alert="alert" :title="'数据库地址'" v-model:value="db.addr" />
+    <from-dropdowns
+      v-model:value="dbType"
+      :title="'数据库选择'"
+      :data="['MySQL', 'SQLite']"
+    />
+    <from-input
+      :alert="alert"
+      :title="'数据库地址'"
+      v-model:value="db.addr"
+      :disabled="disabled()"
+    />
     <from-input
       :alert="alert"
       :title="'数据库名称'"
+      :disabled="disabled()"
       v-model:value="db.dataname"
     />
     <from-input
       :alert="alert"
       :title="'数据库用户'"
+      :disabled="disabled()"
       v-model:value="db.username"
     />
     <from-input
       :alert="alert"
       :title="'数据库密码'"
+      :type="'password'"
+      :disabled="disabled()"
       v-model:value="db.password"
     />
-    <from-button-two
-      :title1="'上一步'"
-      :title2="'下一步'"
-      @click1="back"
-      @click2="next"
-    />
+    <from-button :title="'下一步'" @click="next" :loading="btnLoading" />
   </div>
 </template>
 
 <script setup lang="ts">
-import { reactive, ref } from "vue";
-import FromInput from "@pages/init/components/FromInput.vue";
-import FromButtonTwo from "@pages/init/components/FromButtonTwo.vue";
+import { ref } from "vue";
+import { FromButton, FromInput, FromDropdowns } from "@pages/init/components";
 import { useRouter } from "vue-router";
-import type { DBParam } from "@/service/type/init";
 import { VerifyDB } from "@/service/init";
 import { ElMessage } from "element-plus";
+import { useInitStore } from "@/stores/initStore";
+import { storeToRefs } from "pinia";
 
 const router = useRouter();
+const store = useInitStore();
 const alert = ref(false);
-const db = reactive<DBParam>({
-  addr: "175.178.181.203:3306",
-  dataname: "linktree",
-  username: "linktree",
-  password: "dl2002123",
-});
-function back() {
-  router.back();
+const btnLoading = ref(false);
+const dbType = ref<"MySQL" | "SQLite">("MySQL");
+const { db } = storeToRefs(store);
+
+function disabled() {
+  return dbType.value === "SQLite";
 }
+
 function next() {
-  VerifyDB(db)
-    .then(() => {
-      router.push("/redis");
-    })
-    .catch(() => {
-      ElMessage.error("err");
-    });
+  btnLoading.value = true;
+  if (!disabled()) {
+    VerifyDB(db.value)
+      .then(() => {
+        btnLoading.value = false;
+        router.push("/redis");
+      })
+      .catch(() => {
+        alert.value = true;
+        btnLoading.value = false;
+        ElMessage.error("数据库连接失败");
+      });
+    return;
+  }
+  router.push("/redis");
 }
 </script>
 <style scoped lang="scss">

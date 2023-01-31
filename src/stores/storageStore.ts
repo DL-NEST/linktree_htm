@@ -6,10 +6,10 @@ import { PiniaName } from "@/stores/index";
 export const useStorageStore = defineStore(
   PiniaName.Storage,
   () => {
-    const access_token = ref("234");
+    const access_token = ref("token");
 
     function increment() {
-      access_token.value = access_token.value + "sa";
+      access_token.value = access_token.value + "1";
     }
 
     return { access_token, increment };
