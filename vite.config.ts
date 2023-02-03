@@ -41,7 +41,6 @@ export default defineConfig(() => {
       // element 自动按需导入
       AutoImport({
         resolvers: [ElementPlusResolver()],
-        imports: ["vitest"],
         dts: true, // 生成 TypeScript 声明
       }),
       Components({

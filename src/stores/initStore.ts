@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { reactive } from "vue";
+import { reactive, toRaw } from "vue";
 import { PiniaName } from "@/stores/index";
 import type { DBParam, RedisParam, SetupParam } from "@/service/type/init";
 
@@ -19,8 +19,8 @@ export const useInitStore = defineStore(PiniaName.Init, () => {
 
   function setupOpt(): SetupParam {
     return {
-      db: db,
-      redis: redis,
+      dsn: toRaw(db),
+      redis_opt: toRaw(redis),
     };
   }
 

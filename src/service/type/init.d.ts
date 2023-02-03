@@ -1,6 +1,6 @@
 export type SetupParam = {
-  db: DBParam;
-  redis: RedisParam;
+  dsn: DBParam;
+  redis_opt: RedisParam;
 };
 
 export type DBParam = {

@@ -8,33 +8,22 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, ref } from "vue";
-import FromInput from "@pages/init/components/FromInput.vue";
-import FromButtonTwo from "@pages/init/components/FromButtonTwo.vue";
 import { useRouter } from "vue-router";
-import FromButton from "@pages/init/components/FromButton.vue";
+import { FromButton } from "@pages/init/components";
+import { useInitStore } from "@/stores/initStore";
+import { SetSetup } from "@/service/init";
+import { ElMessage } from "element-plus";
 
-type DBType = {
-  addr: string;
-  dbName: string;
-  dbUser: string;
-  dbPassword: string;
-};
+const router = useRouter();
+const store = useInitStore();
 
-const $router = useRouter();
-
-const alert = ref(false);
-const db = reactive<DBType>({
-  addr: "",
-  dbName: "",
-  dbUser: "",
-  dbPassword: "",
-});
-function back() {
-  $router.back();
-}
 function next() {
-  $router.push("/home");
+  SetSetup(store.setupOpt())
+    .then(() => {
+      ElMessage.info("时间");
+    })
+    .catch(() => {});
+  router.push("/home");
 }
 </script>
 <style scoped lang="scss">
